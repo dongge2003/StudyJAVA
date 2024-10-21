@@ -1,6 +1,7 @@
 package com.IO.SerializeTheStream;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class Test {
     public static void main(String[] args) throws Exception {
@@ -88,18 +89,67 @@ public class Test {
             如:private transient String address;
          */
 
-        Student s3 = new Student("赵4",21,"北京市1环","男");
-        ObjectOutputStream objectOutput = new ObjectOutputStream(new FileOutputStream("D:\\CODE\\java\\javase\\StudyJava\\src\\com\\IO\\SerializeTheStream\\Object.txt"));
-        objectOutput.writeObject(s3);
-        objectOutput.close();
-
-        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("D:\\CODE\\java\\javase\\StudyJava\\src\\com\\IO\\SerializeTheStream\\Object.txt"));
-        Student s4 = (Student) objectInputStream.readObject();
-        objectInputStream.close();
-
-        System.out.println(s4);//Student [name=赵4, age=21, address=null, sex=男]
+//        Student s3 = new Student("赵4",21,"北京市1环","男");
+//        ObjectOutputStream objectOutput = new ObjectOutputStream(new FileOutputStream("D:\\CODE\\java\\javase\\StudyJava\\src\\com\\IO\\SerializeTheStream\\Object.txt"));
+//        objectOutput.writeObject(s3);
+//        objectOutput.close();
+//
+//        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("D:\\CODE\\java\\javase\\StudyJava\\src\\com\\IO\\SerializeTheStream\\Object.txt"));
+//        Student s4 = (Student) objectInputStream.readObject();
+//        objectInputStream.close();
+//
+//        System.out.println(s4);//Student [name=赵4, age=21, address=null, sex=男]
         //这样就没写进去
+        System.out.println("------------------------------");
 
 
+
+
+
+        /*
+        如果要写入多个对象,并且读取,如果不知道文件中写了几个对象,多次调用反序列化就会报出异常
+        所以一般写入多个对象时用集合写进去ArrayList
+
+         */
+        //例如:
+        Student test1 = new Student("小丽",22,"新疆","女");
+        Student test2 = new Student("小华",21,"湖南","男");
+        Student test3 = new Student("小美",18,"广州","女");
+
+        ObjectOutputStream w = new ObjectOutputStream(new FileOutputStream("D:\\CODE\\java\\javase\\StudyJava\\src\\com\\IO\\SerializeTheStream\\MoreObject.txt"));
+        ObjectInputStream r = new ObjectInputStream(new FileInputStream("D:\\CODE\\java\\javase\\StudyJava\\src\\com\\IO\\SerializeTheStream\\MoreObject.txt"));
+
+//        //法1:
+//        w.writeObject(test1);
+//        w.writeObject(test2);
+//        w.writeObject(test3);
+//        //写入3个对象
+//
+//        System.out.println((Student)r.readObject());
+//        System.out.println((Student)r.readObject());
+//        System.out.println((Student)r.readObject());
+//        //读取3个
+//
+//        //System.out.println((Student)r.readObject());
+//        //在读取第4个对象的时候报出异常Exception in thread "main" java.io.EOFException,所以不好控制,更不用说,如果不知道写入了几个对象
+        System.out.println("_________________________");
+
+
+        //法2:
+        ArrayList<Student> studentList = new ArrayList<>();
+        studentList.add(test1);
+        studentList.add(test2);
+        studentList.add(test3);
+
+        w.writeObject(studentList);
+
+        ArrayList<Student> list = (ArrayList<Student>) r.readObject();
+        for (Student student : list) {
+            System.out.println(student);
+        }
+
+
+        r.close();
+        w.close();
     }
 }
