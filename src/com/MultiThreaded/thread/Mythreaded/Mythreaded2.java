@@ -1,4 +1,4 @@
-package com.MultiThreaded.Mythreaded;
+package com.MultiThreaded.thread.Mythreaded;
 
 public class Mythreaded2 {
     public static void main(String[] args) {

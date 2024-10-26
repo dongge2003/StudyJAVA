@@ -1,4 +1,4 @@
-package com.MultiThreaded.Mythreaded;
+package com.MultiThreaded.thread.Mythreaded;
 
 public class Mythreaded1 {
     public static void main(String[] args) {
@@ -6,11 +6,11 @@ public class Mythreaded1 {
         1.继承Thread类的方式进行实现
          */
 
-        MyThread m1 = new MyThread();
+        myThread m1 = new myThread();
         m1.setName("线程1:");
         m1.start();
 
-        MyThread m2 = new MyThread();
+        myThread m2 = new myThread();
         m2.setName("线程2:");
         m2.start();
     }
