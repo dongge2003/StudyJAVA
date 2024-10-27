@@ -134,7 +134,7 @@ public class Test {
 
         /*
         线程的安全问题:
-            在package com.MultiThreaded.Demo01;这个包下,显示出了多线程的不安全
+            在package com.MultiThreaded.lock.Demo01;这个包下,显示出了多线程的不安全
             此时就要加锁,在有线程执行代码块的时候,其他线程不能进来执行代码块,只有该线程执行完毕时,其他线程才能通过抢到执行权,执行代码块
 
             同步代码块:

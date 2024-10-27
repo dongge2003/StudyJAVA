@@ -1,4 +1,4 @@
-package com.MultiThreaded.thread.Mythreaded;
+package com.MultiThreaded.thread.Mythread;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;

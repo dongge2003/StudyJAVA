@@ -1,4 +1,4 @@
-package com.MultiThreaded.Demo02;
+package com.MultiThreaded.lock.Demo02;
 
 public class Test {
     public static void main(String[] args) {
